@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+
+  --color-bocra-blue: #076090;
+  --color-bocra-dark: #1a1a1a;
+  --color-bocra-light: #f8f9fa;
+
+  --color-sector-telecom: #076090;
+  --color-sector-broadcast: #006d55;
+  --color-sector-postal: #800000;
+  --color-sector-internet: #D4AC0D;
+  --color-sector-spectrum: #7C3AED;
+}
+
+@keyframes color-cycle {
+  0%, 100% { color: #0974ae; }
+  25% { color: #008165; }
+  50% { color: #800000; }
+  75% { color: #FDD207; }
+}
+
+.animate-color-cycle {
+  animation: color-cycle 8s infinite;
+}
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-gray-950 text-bocra-dark dark:text-gray-100 font-sans transition-colors duration-300;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-section, .print-section * {
+    visibility: visible;
+  }
+  .print-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+.glass {
+  @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-white/20 dark:border-gray-800/50;
+}
+
+.btn-primary {
+  @apply bg-bocra-blue text-white px-6 py-3 rounded-lg font-semibold transition-all hover:bg-bocra-blue/90 active:scale-95 dark:bg-sector-telecom dark:hover:bg-sector-telecom/80;
+}
+
+.btn-secondary {
+  @apply bg-white text-bocra-blue border-2 border-bocra-blue px-6 py-3 rounded-lg font-semibold transition-all hover:bg-bocra-blue hover:text-white active:scale-95 dark:bg-gray-900 dark:text-blue-400 dark:border-blue-500 dark:hover:bg-blue-600 dark:hover:text-white;
+}
+
+.input-field {
+  @apply w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-bocra-blue dark:focus:ring-blue-500 focus:border-transparent outline-none text-gray-800 dark:text-gray-100 transition-all;
+}
+
+.pattern-dots {
+  background-image: radial-gradient(currentColor 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.pattern-grid {
+  background-image: linear-gradient(to right, currentColor 1px, transparent 1px),
+                    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
